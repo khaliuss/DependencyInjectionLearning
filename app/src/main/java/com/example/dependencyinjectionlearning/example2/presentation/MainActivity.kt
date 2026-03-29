@@ -12,7 +12,10 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: ExampleViewModel
 
-    private val component = DaggerApplicationComponent.create()
+    private val component by lazy {
+        DaggerApplicationComponent.factory()
+            .create(application, System.nanoTime())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)

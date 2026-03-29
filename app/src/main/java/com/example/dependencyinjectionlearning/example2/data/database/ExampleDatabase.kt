@@ -1,12 +1,18 @@
 package com.example.dependencyinjectionlearning.example2.data.database
 
+import android.content.Context
 import android.util.Log
+import com.example.dependencyinjectionlearning.R
 import javax.inject.Inject
 
-class ExampleDatabase @Inject constructor(){
+class ExampleDatabase @Inject constructor(
+    val context: Context,
+    val timer:Long
+
+){
 
     fun method() {
-        Log.d(LOG_TAG, "ExampleDatabase")
+        Log.d(LOG_TAG, "ExampleDatabase ${context.getString(R.string.app_name)} $timer")
     }
 
     companion object {
