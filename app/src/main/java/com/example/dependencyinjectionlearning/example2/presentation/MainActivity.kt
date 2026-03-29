@@ -2,7 +2,9 @@ package com.example.dependencyinjectionlearning.example2.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.dependencyinjectionlearning.R
+import com.example.dependencyinjectionlearning.example2.ExampleApp
 import com.example.dependencyinjectionlearning.example2.di.DaggerApplicationComponent
 import javax.inject.Inject
 
@@ -10,11 +12,9 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var viewModel: ExampleViewModel
-
+    lateinit var  viewModel: ExampleViewModel
     private val component by lazy {
-        DaggerApplicationComponent.factory()
-            .create(application, System.nanoTime())
+        (application as ExampleApp).component
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,5 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel.method()
+
     }
 }

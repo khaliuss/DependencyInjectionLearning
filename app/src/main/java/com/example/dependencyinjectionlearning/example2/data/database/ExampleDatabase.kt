@@ -4,7 +4,9 @@ import android.content.Context
 import android.util.Log
 import com.example.dependencyinjectionlearning.R
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ExampleDatabase @Inject constructor(
     val context: Context,
     val timer:Long
@@ -12,7 +14,7 @@ class ExampleDatabase @Inject constructor(
 ){
 
     fun method() {
-        Log.d(LOG_TAG, "ExampleDatabase ${context.getString(R.string.app_name)} $timer")
+        Log.d(LOG_TAG, "ExampleDatabase ${context.getString(R.string.app_name)} $timer $this")
     }
 
     companion object {
